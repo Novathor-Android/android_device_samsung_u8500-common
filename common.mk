@@ -143,7 +143,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=131072 \
     hwui.render_dirty_regions=false \
-    video.accelerate.hw=1 
+    video.accelerate.hw=1 \
+    debug.egl.force_msaa=true
 
 PRODUCT_TAGS += dalvik.gc.type-precise
 
