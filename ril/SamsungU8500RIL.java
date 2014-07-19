@@ -329,8 +329,6 @@ public class SamsungU8500RIL extends RIL implements CommandsInterface {
 
     @Override
     protected RILRequest findAndRemoveRequestFromList(int serial) {
-        long removalTime = System.currentTimeMillis();
-        long timeDiff = 0;
         RILRequest rr = null;
 
         synchronized (mRequestList) {
@@ -348,10 +346,16 @@ public class SamsungU8500RIL extends RIL implements CommandsInterface {
                       // We will print a list of such stale requests which
                       // haven't yet received a response. If the timeout fires
                       // first, then the wakelock is released without debugging.
+                  /* Just print a generic error for now */
+                  /*
+                    long removalTime = System.currentTimeMillis();
+                    long timeDiff = 0;
                     timeDiff = removalTime - rr.creationTime;
                     if ( timeDiff > mWakeLockTimeout ) {
                         Rlog.d(RILJ_LOG_TAG, "No response for [" + rr.mSerial + "] " +
                                 requestToString(rr.mRequest) + " after " + timeDiff + " milliseconds.");
+                  */
+                    Rlog.d(RILJ_LOG_TAG, "No response for [" + serial + "]");
 
                         /* Don't actually remove anything for now. Consider uncommenting this to
                            purge stale requests */
@@ -369,7 +373,7 @@ public class SamsungU8500RIL extends RIL implements CommandsInterface {
                         // Samsung RIL
                         rr.release();
                         */
-                    }
+                    /* } */
                 }
             }
         return null;
